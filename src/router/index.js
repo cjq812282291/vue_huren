@@ -1,27 +1,40 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import HomeRouter from './Home'
+import MemberRouter from './Member'
+import ShopCarRouter from './ShopCar'
+import SearchRouter from './Search'
+import NewsListRouter from './NewsList'
+import NewsInfoRouter from './NewsInfo'
+import PhotoListRouter from './PhotoList'
+import PhotoInfoRouter from './PhotoInfo'
+import GoodListRouter from './GoodList'
+import GoodInfoRouter from './GoodInfo'
+import GoodDescRouter from './GoodDesc'
+import GoodCommentRouter from './GoodComment'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
-
 const router = new VueRouter({
-  routes
+  routes: [
+    HomeRouter,
+    MemberRouter,
+    ShopCarRouter,
+    SearchRouter,
+    NewsListRouter,
+    NewsInfoRouter,
+    PhotoListRouter,
+    PhotoInfoRouter,
+    GoodListRouter,
+    GoodInfoRouter,
+    GoodDescRouter,
+    GoodCommentRouter,
+    {
+      path: '/',
+      redirect: '/home'
+    }
+  ],
+  linkActiveClass: 'mui-active' // 手动设置 被激活的 路由链接的高亮类名
 })
 
 export default router

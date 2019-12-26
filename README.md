@@ -1,24 +1,113 @@
 # vue_huren
 
-## Project setup
-```
-npm install
-```
+## 湖人总冠军vue移动端项目
+## 使用 vue-cli vue-router vuex axios MintUI MUI
+## 主要的功能：
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## 顶部导航栏
+1. MintUI Header 组件
+2. 设置了路由返回 按钮 可以返回到上一页
+ + 判断当前是否是 home 如果是按钮隐藏 否则显示按钮
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## 底部选项卡
+1. MUI 底部栏组件
+2. router-link to 跳转路由
 
-### Lints and fixes files
-```
-npm run lint
-```
+## 子组件
+1. 轮播图子组件
+ + 用 props 声明需要父组件向他传递的数据
+2. 评论子组件
+ + 获取评论数据 将老数据 与 新数据 concat 进行拼接
+ + 分页展示数据 默认展示第一页数据
+ + 点击加载更多 获取下一页数据
+ + 发表评论 用 trim 判断评论是否为空
+  + 拼接一个评论对象
+  + 将这条评论插入到数组的开头
+  + 清空评论输入
+3. 数字选择框子组件
+ + 全局注册 MUI 的js
+ + 使用 mounted 生命周期 页面还没渲染成功时 初始化数字选择框
+ + 使用子组件向父组件传值的调用方法 emit  传递函数方法名称 和 数值 并取整加变成字符串
+  + 每当 文本框的数据被修改 立即把最新的数据 通过事件调用 传递给父组件
+ + 使用监听属性 监听数据的最大值
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 首页
+1. 轮播图 调用子组件 向子组件传值
+2. 六宫格子菜单
+3. Toast 弹窗显示消息组件
+
+# 新闻资讯
+1. 新闻列表
+ + 使用 flex 弹性布局 
+    + 元素中的各项周围留有空白 两侧对齐
+ + 使用 axios 获取后台数据
+ + 将新闻数据进行渲染
+    + 使用 moment 组件 注册 全局时间过滤器
+ + 根据 新闻Id 跳转到 新闻详情 页面
+
+ 2. 新闻详情
+  + 用 v-html 进行整个页面的渲染
+  + 调用评论子组件 向子组件传值
+
+# 图片分享
+1. MUI 顶部滑动组件
+ + 获取分类数据 拼接一个完整的分类列表
+ + 根据分类的Id 显示分类的图片
+2. 图片列表
+ + 根据 图片Id 跳转到图片详情
+3. 图片详情
+ + 全局注册 vue-preview 图片预览组件
+ + 缩略图
+  + 设置 大图 浏览的宽和高
+  + 关键 获取小图的数据
+
+# 商品购买
+1. 商品列表
+ + 根据 Id 跳转到商品详情
+2. 商品详情
+ + 调用轮播图子组件
+ + 小球加入购物车的动画
+  + 点击之前
+   + 初始化坐标(0,0)
+  + 点击时  
+   + 1.获取小球在 页面中的位置
+   + 2.获取徽标在 页面中的位置
+   + 3.然后 徽标和小球的 X值 Y值  求差
+   + 4.根据两个差值进行平移
+   + 5.控制变化的速度曲线
+   + 6.动画结束
+  + 点击之后
+   + 把 true 重置成 false
+ + 商品购买数量
+  + 调用 数字选择框 子组件
+3. 图文信息
+ + 渲染图文数据
+4. 商品评论
+ + 调用评论子组件
+
+## Vuex
+
+## state
++ this.$store.state
++ 相当于 data 属性 要存入的数据
+
+## mutations
++ this.$store.commit('方法的名称', '按需传递唯一的参数')
++ 相当于 methods
+
+## getters
++ this.$store.getters
++ 相当于计算属性 computed
+
+## actions
++ this.$store.dispatch
++ 将mutations里面处理数据的方法变成异步的，就是异步操作数据
+
+## modules
++ 模块化vuex
+
+## 会员
+
+## 购物车
+
+## 搜索
